@@ -88,7 +88,7 @@ class App extends Component {
           <Button label='7' onClick={this.addDigit}/>
           <Button label='8' onClick={this.addDigit}/>
           <Button label='9' onClick={this.addDigit}/>
-          <Button label='*' onClick={this.setOperation}/>
+          <Button label='x' onClick={this.setOperation}/>
 
           <Button label='4' onClick={this.addDigit}/>
           <Button label='5' onClick={this.addDigit}/>
