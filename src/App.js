@@ -15,14 +15,19 @@ const initialState = {
 class App extends Component {
   state = { ...initialState }
 
-  addDigit = caractere => { // para não ter um numero com dois '.' exemplo -> 25.6.7.
-    if (caractere === '.' && this.state.displayValue.includes('.')) {
+  addDigit = caractere => { 
+    
+//para não termos zero a esquerda de um numero ex.(08)     para não ter uma sequencia de zeros ex.(00000)        
+    const clearDisplay = this.state.displayValue === '0' || this.state.clearDisplay;
+
+    // para não ter um numero com dois '.' exemplo -> 25.6.7.
+    if (caractere === '.' 
+      && !clearDisplay 
+      && this.state.displayValue.includes('.')) {
+
       return;
     }
 
-
-//para não termos zero a esquerda de um numero ex.(08)     para não ter uma sequencia de zeros ex.(00000)        
-    const clearDisplay = this.state.displayValue === '0' || this.state.clearDisplay;
     const currentValue = clearDisplay ? '' : this.state.displayValue;
     const displayValue = currentValue + caractere ; //concatenar numeros
 
@@ -53,13 +58,15 @@ class App extends Component {
       } catch (e) {
         values[0] = this.state.values[0];
       }
-
-      values[1] = 0;
+ 
+      values[1] = 0; 
       this.setState({
-        displayValue: values[0],
+        displayValue: `${values[0]}`,
         operation: equals ? null : operation,
         current: equals ? 0 : 1,
-        clearDisplay: !equals,
+
+        // clearDisplay: !equals,
+        clearDisplay: true,
         values,
       });
     }
